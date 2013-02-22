@@ -24,3 +24,8 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 
 filetype plugin indent on
+
+" Set color to molokai
+colors molokai
+set t_Co=256
+set term=screen-256color
