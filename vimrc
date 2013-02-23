@@ -17,6 +17,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
 
 filetype plugin indent on
 
@@ -35,8 +36,7 @@ nnoremap <Down> :echoe "Use j"<CR>
 map <C-s> :w<cr>
 imap <C-s> <ESC>:w<cr>a
 
-" Map CTRL+Q to close file
-map <C-q> :q<cr>
-imap <C-q> <ESC>:q<cr>
-map <C-S-q> :q!<cr>
-imap <C-S-q> <ESC>:q!<cr>
+" Map CTRL+Q to close buffer
+map <C-q> :bd<cr>
+imap <C-q> <ESC>:bd<cr>
+
