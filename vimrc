@@ -10,6 +10,21 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" Plugins
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-rails'
+
+filetype plugin indent on
+
+" Set color to molokai and set 256 color
+colors molokai
+set t_Co=256
+set term=screen-256color
+
 " Disable Arrows Keys
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
@@ -20,17 +35,8 @@ nnoremap <Down> :echoe "Use j"<CR>
 map <C-s> :w<cr>
 imap <C-s> <ESC>:w<cr>a
 
-" Plugins
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-
-filetype plugin indent on
-
-" Set color to molokai and set 256 color
-colors molokai
-set t_Co=256
-set term=screen-256color
-
+" Map CTRL+Q to close file
+map <C-q> :q<cr>
+imap <C-q> <ESC>:q<cr>
+map <C-S-q> :q!<cr>
+imap <C-S-q> <ESC>:q!<cr>
