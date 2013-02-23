@@ -17,7 +17,14 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-endwise'
 Bundle 'vim-ruby/vim-ruby'
+
+" Snipmate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/snipmate-snippets"
+Bundle "garbas/vim-snipmate"
 
 filetype plugin indent on
 
@@ -37,6 +44,6 @@ map <C-s> :w<cr>
 imap <C-s> <ESC>:w<cr>a
 
 " Map CTRL+Q to close buffer
-map <C-q> :bd<cr>
-imap <C-q> <ESC>:bd<cr>
+map <C-q> :bw<cr>
+imap <C-q> <ESC>:bw<cr>
 
