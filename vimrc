@@ -18,6 +18,7 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
 Bundle 'vim-ruby/vim-ruby'
 
 " Snipmate
