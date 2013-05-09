@@ -49,3 +49,5 @@ imap <C-s> <ESC>:w<cr>a
 map <C-q> :bw<cr>
 imap <C-q> <ESC>:bw<cr>
 
+" Use jj as ESC
+:imap jj <Esc>
