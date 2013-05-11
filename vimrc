@@ -22,6 +22,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'mattn/zencoding-vim'
 
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
