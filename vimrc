@@ -9,7 +9,6 @@ set laststatus=2
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set paste
 
 " Plugins
 set rtp+=~/.vim/bundle/vundle/
