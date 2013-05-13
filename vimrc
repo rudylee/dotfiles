@@ -9,6 +9,7 @@ set laststatus=2
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set hidden
 
 " Plugins
 set rtp+=~/.vim/bundle/vundle/
@@ -26,7 +27,7 @@ Bundle 'mattn/zencoding-vim'
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
+Bundle "honza/vim-snippets"
 Bundle "garbas/vim-snipmate"
 
 filetype plugin indent on
