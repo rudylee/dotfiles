@@ -31,7 +31,9 @@ Bundle "tomtom/tlib_vim"
 Bundle "honza/vim-snippets"
 Bundle "garbas/vim-snipmate"
 
+filetype off
 filetype plugin indent on
+syntax on
 
 " Set color to molokai and set 256 color
 colors molokai
