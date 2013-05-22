@@ -46,6 +46,12 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
+" Map Keys for Managing Buffers
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
+map <C-L> :tabn<CR>
+map <C-H> :tabp<CR>
+
 " Map CTRL+S to save file
 map <C-s> :w<cr>
 imap <C-s> <ESC>:w<cr>a
