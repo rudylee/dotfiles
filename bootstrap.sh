@@ -54,3 +54,6 @@ if ! type "casperjs" > /dev/null; then
     git clone git://github.com/n1k0/casperjs.git
     ln -sf $SRC/casperjs/bin/casperjs /usr/local/bin/casperjs
 fi
+
+# Error fix for NERDTree
+let g:NERDTreeDirArrows=0
