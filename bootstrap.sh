@@ -42,10 +42,15 @@ fi
 # Install PhantomJS and CasperJS
 export SRC="/usr/local/src"
 cd $SRC
-rm -Rf $SRC/phantomjs
-wget https://phantomjs.googlecode.com/files/phantomjs-1.9.1-linux-i686.tar.bz2
-tar -xvf phantomjs-1.9.1-linux-i686.tar.bz2
-mv phantomjs-1.9.1-linux-i686 phantomjs
-ln -sf $SRC/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
-git clone git://github.com/n1k0/casperjs.git
-ln -sf $SRC/casperjs/bin/casperjs /usr/local/bin/casperjs
+if ! type "phantomjs" > /dev/null; then
+    rm -Rf $SRC/phantomjs
+    wget https://phantomjs.googlecode.com/files/phantomjs-1.9.1-linux-i686.tar.bz2
+    tar -xvf phantomjs-1.9.1-linux-i686.tar.bz2
+    mv phantomjs-1.9.1-linux-i686 phantomjs
+    ln -sf $SRC/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
+fi
+
+if ! type "casperjs" > /dev/null; then
+    git clone git://github.com/n1k0/casperjs.git
+    ln -sf $SRC/casperjs/bin/casperjs /usr/local/bin/casperjs
+fi
