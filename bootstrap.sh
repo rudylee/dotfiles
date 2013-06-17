@@ -18,6 +18,8 @@ git clone https://github.com/rudylee/dotfiles $HOME/dotfiles
 git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 git clone https://github.com/tomasr/molokai.git $HOME/molokai
 ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
+mkdir $HOME/.vim/ftplugin
+ln -sf $HOME/dotfiles/ftplugin/php.vim $HOME/.vim/ftplugin/php.vim
 ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 mv $HOME/molokai/colors $HOME/.vim
 vim +BundleInstall +qall
