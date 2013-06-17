@@ -63,3 +63,6 @@ imap <C-q> <ESC>:bw<cr>
 
 " Use jj as ESC
 :imap jj <Esc>
+
+" Fix for NERDTree
+let g:NERDTreeDirArrows=0
