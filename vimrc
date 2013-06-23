@@ -41,11 +41,17 @@ colors molokai
 set t_Co=256
 set term=screen-256color
 
+" Set up leader key to <,>
+let mapleader = ","
+
 " Disable Arrows Keys
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+
+" Map leader+<,> to open NERDTree
+nmap <leader>ne :NERDTree<cr>
 
 " Map Keys for Managing Buffers
 map <C-J> :bnext<CR>
