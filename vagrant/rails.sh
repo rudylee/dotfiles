@@ -8,6 +8,7 @@ apt-get install -y git
 apt-get install -y subversion
 apt-get install -y fontconfig
 apt-get install -y curl
+apt-get install -y nodejs
 
 # Set up Vim and Tmux
 export HOME="/home/vagrant"
@@ -54,5 +55,5 @@ fi
 rvm use 1.9.3 --default
 
 # Install Postgres
-apt-get install -y postgresql postgresql-contrib phppgadmin
+apt-get install -y postgresql postgresql-contrib libpq-dev phppgadmin
 service apache2 start
