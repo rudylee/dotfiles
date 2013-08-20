@@ -9,6 +9,7 @@ apt-get install -y subversion
 apt-get install -y fontconfig
 apt-get install -y curl
 apt-get install -y nodejs
+apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
 # Set up Vim and Tmux
 export HOME="/home/vagrant"
