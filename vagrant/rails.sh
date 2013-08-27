@@ -57,4 +57,5 @@ rvm use 1.9.3 --default
 
 # Install Postgres
 apt-get install -y postgresql postgresql-contrib libpq-dev phppgadmin
+sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'root';"
 service apache2 start
