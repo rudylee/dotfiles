@@ -64,8 +64,8 @@ map <C-s> :w<cr>
 imap <C-s> <ESC>:w<cr>a
 
 " Map CTRL+Q to close buffer
-map <C-q> :bw<cr>
-imap <C-q> <ESC>:bw<cr>
+map <C-q> :bp\|bd #<cr>
+imap <C-q> <ESC>:bp\|bd #<cr>
 
 " Use jj as ESC
 :imap jj <Esc>
