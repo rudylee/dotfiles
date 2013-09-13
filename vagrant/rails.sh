@@ -55,6 +55,9 @@ if ! type "rvm" > /dev/null; then
 fi
 rvm use 1.9.3 --default
 
+# Set Environment Variable for Zeus
+export ZEUSSOCK=/tmp/zeus.sock
+
 # Install Postgres
 apt-get install -y postgresql postgresql-contrib libpq-dev phppgadmin
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'root';"
