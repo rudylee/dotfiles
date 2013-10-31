@@ -67,6 +67,10 @@ imap <C-s> <ESC>:w<cr>a
 map <C-q> :bp\|bd #<cr>
 imap <C-q> <ESC>:bp\|bd #<cr>
 
+" Key mapping for CtrlP
+nnoremap <leader>f :CtrlP<CR>
+nnoremap <leader>F :CtrlPCurWD<CR>
+
 " Use jj as ESC
 :imap jj <Esc>
 
