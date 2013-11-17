@@ -77,3 +77,6 @@ nnoremap <leader>F :CtrlPCurWD<CR>
 
 " Fix for NERDTree
 let g:NERDTreeDirArrows=0
+
+" Add font for Vim Airline
+let g:airline_powerline_fonts = 1
