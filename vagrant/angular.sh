@@ -64,5 +64,6 @@ if ! type "rvm" > /dev/null; then
     rvm requirements
     rvm install 1.9.3
     rvm use 1.9.3 --default
+    gem install sass
 fi
 rvm use 1.9.3 --default
