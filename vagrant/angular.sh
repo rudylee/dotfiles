@@ -56,3 +56,13 @@ if ! type "node" > /dev/null; then
     ln -sf $SRC/nodejs/bin/npm /usr/local/bin/npm
     npm install -g grunt-cli
 fi
+
+# Install RVM
+if ! type "rvm" > /dev/null; then
+    \curl -L https://get.rvm.io | bash -s stable
+    source /usr/local/rvm/scripts/rvm
+    rvm requirements
+    rvm install 1.9.3
+    rvm use 1.9.3 --default
+fi
+rvm use 1.9.3 --default
