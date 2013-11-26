@@ -11,22 +11,20 @@ apt-get install -y curl
 apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
 # Set up Vim and Tmux
-if ! type "tmux" > /dev/null; then
-    export HOME="/home/vagrant"
-    cd $HOME
-    rm -Rf $HOME/dotfiles
-    rm -Rf $HOME/molokai
-    rm -Rf $HOME/.vim/colors
-    git clone https://github.com/rudylee/dotfiles $HOME/dotfiles
-    git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
-    git clone https://github.com/tomasr/molokai.git $HOME/molokai
-    ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
-    mkdir $HOME/.vim/ftplugin
-    ln -sf $HOME/dotfiles/ftplugin/php.vim $HOME/.vim/ftplugin/php.vim
-    ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
-    mv $HOME/molokai/colors $HOME/.vim
-    vim +BundleInstall +qall
-fi
+export HOME="/home/vagrant"
+cd $HOME
+rm -Rf $HOME/dotfiles
+rm -Rf $HOME/molokai
+rm -Rf $HOME/.vim/colors
+git clone https://github.com/rudylee/dotfiles $HOME/dotfiles
+git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+git clone https://github.com/tomasr/molokai.git $HOME/molokai
+ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
+mkdir $HOME/.vim/ftplugin
+ln -sf $HOME/dotfiles/ftplugin/php.vim $HOME/.vim/ftplugin/php.vim
+ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
+mv $HOME/molokai/colors $HOME/.vim
+vim +BundleInstall +qall
 
 # Set up the bashrc
 if ! grep -q "export TERM=xterm-256color" "$HOME/.bashrc"; then
