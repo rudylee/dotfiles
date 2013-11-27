@@ -80,3 +80,4 @@ let g:NERDTreeDirArrows=0
 
 " Add font for Vim Airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
