@@ -42,6 +42,12 @@ fi
 if ! grep -q "stty start undef" "$HOME/.bashrc"; then
     echo "stty start undef" >> $HOME/.bashrc
 fi
+if ! grep -q "export ZEUSSOCK=/tmp/zeus.sock" "$HOME/.bashrc"; then
+    echo "export ZEUSSOCK=/tmp/zeus.sock" >> $HOME/.bashrc
+fi
+if ! grep -q "export EDITOR=vim" "$HOME/.bashrc"; then
+    echo "export EDITOR=vim" >> $HOME/.bashrc
+fi
 
 # Install NodeJS, NPM and Grunt
 if ! type "node" > /dev/null; then
@@ -55,7 +61,7 @@ if ! type "node" > /dev/null; then
     npm install -g grunt-cli
 fi
 
-# Install RVM
+# Install RVM and Tmuxinator
 if ! type "rvm" > /dev/null; then
     \curl -L https://get.rvm.io | bash -s stable
     source /usr/local/rvm/scripts/rvm
@@ -63,11 +69,9 @@ if ! type "rvm" > /dev/null; then
     rvm install 1.9.3
     rvm use 1.9.3 --default
     gem install rails --no-ri --no-rdoc
+    gem install tmuxinator
 fi
 rvm use 1.9.3 --default
-
-# Set Environment Variable for Zeus
-export ZEUSSOCK=/tmp/zeus.sock
 
 # Install Postgres
 apt-get install -y postgresql postgresql-contrib libpq-dev phppgadmin
