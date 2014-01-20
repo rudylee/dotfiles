@@ -10,6 +10,12 @@ apt-get install -y fontconfig
 apt-get install -y curl
 apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
+# Set the git color
+git config --global color.branch auto
+git config --global color.diff auto
+git config --global color.interactive auto
+git config --global color.status auto
+
 # Set up Vim and Tmux
 export HOME="/home/vagrant"
 cd $HOME
