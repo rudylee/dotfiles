@@ -29,6 +29,7 @@ ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
 mkdir $HOME/.vim/ftplugin
 ln -sf $HOME/dotfiles/ftplugin/php.vim $HOME/.vim/ftplugin/php.vim
 ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
+ln -sf $HOME/dotfiles/gitconfig $HOME/.gitconfig
 mv $HOME/molokai/colors $HOME/.vim
 vim +BundleInstall +qall
 
