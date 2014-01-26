@@ -23,3 +23,5 @@
     dh1 = diff HEAD~1
 [core]
     editor = vim
+[crendential]
+    helper = cache --timeout=28800
