@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 # Install Required Packages
+apt-get install -y software-properties-common
+apt-get install -y python-software-properties
+add-apt-repository -y ppa:pi-rho/dev
 apt-get update
 apt-get install -y vim
 apt-get install -y tmux
