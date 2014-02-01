@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 # Install Required Packages
+apt-get install -y software-properties-common
+apt-get install -y python-software-properties
+add-apt-repository -y ppa:pi-rho/dev
 apt-get update
 apt-get install -y vim
 apt-get install -y tmux
@@ -9,6 +12,12 @@ apt-get install -y subversion
 apt-get install -y fontconfig
 apt-get install -y curl
 apt-get install -y libcurl3 libcurl3-gnutls libcurl4-openssl-dev
+
+# Set the git color
+git config --global color.branch auto
+git config --global color.diff auto
+git config --global color.interactive auto
+git config --global color.status auto
 
 # Set up Vim and Tmux
 export HOME="/home/vagrant"
@@ -23,6 +32,7 @@ ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
 mkdir $HOME/.vim/ftplugin
 ln -sf $HOME/dotfiles/ftplugin/php.vim $HOME/.vim/ftplugin/php.vim
 ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
+ln -sf $HOME/dotfiles/gitconfig $HOME/.gitconfig
 mv $HOME/molokai/colors $HOME/.vim
 vim +BundleInstall +qall
 
