@@ -53,7 +53,7 @@ if ! grep -q "stty start undef" "$HOME/.bashrc"; then
     echo "stty start undef" >> $HOME/.bashrc
 fi
 
-# Install NodeJS, NPM and Grunt
+# Install NodeJS, NPM and Yeoman
 if ! type "node" > /dev/null; then
     export SRC="/usr/local/src"
     cd $SRC
@@ -62,7 +62,7 @@ if ! type "node" > /dev/null; then
     rm -Rf $SRC/node.tar.gz
     ln -sf $SRC/nodejs/bin/node /usr/local/bin/node
     ln -sf $SRC/nodejs/bin/npm /usr/local/bin/npm
-    npm install -g grunt-cli
+    npm install -g yo
 fi
 
 # Install RVM
