@@ -23,6 +23,5 @@
     dh1 = diff HEAD~1
 [core]
     editor = vim
-    autocrlf = true
 [credential]
     helper = cache --timeout=28800
