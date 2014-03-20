@@ -26,6 +26,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'mattn/emmet-vim'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'tomtom/tcomment_vim'
 
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
