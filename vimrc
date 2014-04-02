@@ -38,10 +38,12 @@ filetype off
 filetype plugin indent on
 syntax on
 
-" Set color to molokai and set 256 color
-colors molokai
+" Set color to solarized and set 256 color
+let g:solarized_termcolors=256
+set background=dark
 set t_Co=256
 set term=screen-256color
+colorscheme solarized
 
 " Set up leader key to <,>
 let mapleader = ","
