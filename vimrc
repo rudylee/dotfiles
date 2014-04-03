@@ -39,10 +39,10 @@ filetype plugin indent on
 syntax on
 
 " Set color to solarized and set 256 color
-let g:solarized_termcolors=256
+let g:solarized_termcolors=16
 set background=dark
 set t_Co=256
-set term=screen-256color
+set term=xterm-256color
 colorscheme solarized
 
 " Set up leader key to <,>
