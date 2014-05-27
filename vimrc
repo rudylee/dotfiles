@@ -78,6 +78,13 @@ nnoremap <leader>F :CtrlPCurWD<CR>
 " Use jj as ESC
 :imap jj <Esc>
 
+" Key mapping for tab
+map <C-t> <esc>:tabnew<CR>
+
+" Key mapping for windows
+map <C-x> <C-w>c
+map <Leader>w <C-w>w
+
 " Fix for NERDTree
 let g:NERDTreeDirArrows=0
 
