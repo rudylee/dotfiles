@@ -27,6 +27,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'mattn/emmet-vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tomtom/tcomment_vim'
+Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -81,7 +82,7 @@ nnoremap <leader>F :CtrlPCurWD<CR>
 " Key mapping for tab
 map <C-t> <esc>:tabnew<CR>
 
-" Key mapping for windows
+" Key mapping for window management
 map <C-x> <C-w>c
 map <Leader>w <C-w>w
 
