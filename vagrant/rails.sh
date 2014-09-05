@@ -79,12 +79,12 @@ if ! type "rvm" > /dev/null; then
     \curl -L https://get.rvm.io | bash -s stable
     source /usr/local/rvm/scripts/rvm
     rvm requirements
-    rvm install 1.9.3
-    rvm use 1.9.3 --default
+    rvm install 2.1.2
+    rvm use 2.1.2 --default
     gem install rails --no-ri --no-rdoc
     gem install tmuxinator
 fi
-rvm use 1.9.3 --default
+rvm use 2.1.2 --default
 
 # Install Postgres
 apt-get install -y postgresql postgresql-contrib libpq-dev phppgadmin
