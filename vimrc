@@ -28,6 +28,7 @@ Bundle 'mattn/emmet-vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+Bundle 'bling/vim-bufferline'
 
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
