@@ -57,7 +57,7 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 " Map leader+<,> to open NERDTree
-nmap <leader>ne :NERDTreeToggle<cr>
+nmap <leader>ne :NERDTree<cr>
 
 " Map Keys for Managing Buffers
 map <C-J> :bnext<CR>
