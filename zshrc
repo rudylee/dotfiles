@@ -50,6 +50,7 @@ plugins=(git)
 # User configuration
 
 export PATH="$PATH:/Users/rudy/.rvm/gems/ruby-2.1.4/bin:/Users/rudy/.rvm/gems/ruby-2.1.4@global/bin:/Users/rudy/.rvm/rubies/ruby-2.1.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/rudy/.rvm/bin"
+export EDITOR='vim'
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
