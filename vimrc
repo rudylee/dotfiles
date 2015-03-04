@@ -10,6 +10,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set hidden
+set lazyredraw
 
 " Plugins
 set rtp+=~/.vim/bundle/vundle/
