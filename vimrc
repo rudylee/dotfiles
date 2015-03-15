@@ -90,6 +90,10 @@ map <Leader>w <C-w>w
 " Fix for NERDTree
 let g:NERDTreeDirArrows=0
 
+" Highlight the code when it's more than 80 characters
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Test-running stuff
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
