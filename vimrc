@@ -29,6 +29,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'bling/vim-bufferline'
+Bundle 'rizzatti/dash.vim'
 
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -77,6 +78,9 @@ imap <C-q> <ESC>:bp\|bd #<cr>
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>F :CtrlPCurWD<CR>
 
+" Key mapping for Dash
+:nmap <silent> <leader>d <Plug>DashSearch
+
 " Use jj as ESC
 :imap jj <Esc>
 
@@ -91,8 +95,10 @@ map <Leader>w <C-w>w
 let g:NERDTreeDirArrows=0
 
 " Highlight the code when it's more than 80 characters
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+augroup vimrc_autocmds
+  autocmd BufEnter * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  autocmd BufEnter * match OverLength /\%81v.\+/ 
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Test-running stuff
