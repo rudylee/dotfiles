@@ -28,8 +28,9 @@ Bundle 'mattn/emmet-vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'bling/vim-bufferline'
 Bundle 'rizzatti/dash.vim'
+Bundle 'bling/vim-bufferline'
+Bundle 'bling/vim-airline'
 
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -93,6 +94,13 @@ map <Leader>w <C-w>w
 
 " Fix for NERDTree
 let g:NERDTreeDirArrows=0
+
+" Powerline font for airline
+let g:airline_powerline_fonts = 1
+let g:Powerline_symbols = 'fancy'
+
+" Disable output for bufferline
+let g:bufferline_echo=0
 
 " Highlight the code when it's more than 80 characters
 augroup vimrc_autocmds
