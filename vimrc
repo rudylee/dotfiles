@@ -95,12 +95,11 @@ map <Leader>w <C-w>w
 " Fix for NERDTree
 let g:NERDTreeDirArrows=0
 
-" Powerline font for airline
+" Airline configuration
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'fancy'
-
-" Disable output for bufferline
-let g:bufferline_echo=0
+let g:bufferline_echo = 0
+let g:airline_theme= 'dark'
 
 " Highlight the code when it's more than 80 characters
 augroup vimrc_autocmds
