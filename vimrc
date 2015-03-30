@@ -75,10 +75,6 @@ imap <C-s> <ESC>:w<cr>a
 map <C-q> :bp\|bd #<cr>
 imap <C-q> <ESC>:bp\|bd #<cr>
 
-" Key mapping for CtrlP
-nnoremap <leader>f :CtrlP<CR>
-nnoremap <leader>F :CtrlPCurWD<CR>
-
 " Key mapping for Dash
 :nmap <silent> <leader>d <Plug>DashSearch
 
@@ -92,8 +88,13 @@ map <C-t> <esc>:tabnew<CR>
 map <C-x> <C-w>c
 map <Leader>w <C-w>w
 
-" Fix for NERDTree
+" CtrlP Configuration
+let g:ctrlp_working_path_mode = 'a'
+
+" NERDTree configuration
 let g:NERDTreeDirArrows=0
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=2
 
 " Airline configuration
 let g:airline_powerline_fonts = 1
