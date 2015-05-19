@@ -108,6 +108,9 @@ augroup vimrc_autocmds
   autocmd BufEnter * match OverLength /\%81v.\+/ 
 augroup END
 
+" Clean trailing whitespace
+nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Test-running stuff
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
