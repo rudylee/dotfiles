@@ -32,7 +32,6 @@ Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'rizzatti/dash.vim'
 Bundle 'bling/vim-bufferline'
 Bundle 'bling/vim-airline'
-Bundle 'airblade/vim-gitgutter'
 
 " Snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -112,14 +111,6 @@ let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'fancy'
 let g:bufferline_echo = 0
 let g:airline_theme= 'dark'
-
-" GitGutter configuration
-highlight clear SignColumn
-highlight SignColumn ctermfg=black
-highlight GitGutterAdd ctermfg=darkgreen
-highlight GitGutterChange ctermfg=darkyellow
-highlight GitGutterDelete ctermfg=darkred
-highlight GitGutterChangeDelete ctermfg=darkyellow
 
 " Highlight the code when it's more than 80 characters
 augroup vimrc_autocmds
