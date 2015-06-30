@@ -6,6 +6,7 @@
     ui = auto
 [alias]
     st = status
+    sq = rebase -i HEAD~2
     ci = commit
     co = checkout
     di = diff
@@ -18,6 +19,7 @@
     noff = merge --no-ff
     fa = fetch --all
     pom = push origin master
+    pof = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\" --force"
     b = branch
     ds = diff --stat=160,120
     dh1 = diff HEAD~1
