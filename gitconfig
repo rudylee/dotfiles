@@ -21,6 +21,7 @@
     pom = push origin master
     pof = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\" --force"
     b = branch
+    bd = branch -D
     ds = diff --stat=160,120
     dh1 = diff HEAD~1
 

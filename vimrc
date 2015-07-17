@@ -57,7 +57,7 @@ let g:solarized_termcolors=16
 set background=dark
 set t_Co=256
 set term=xterm-256color
-colorscheme solarized
+colorscheme base16-ocean
 
 " Set up leader key to <,>
 let mapleader = ","
@@ -110,7 +110,7 @@ let NERDTreeChDirMode=2
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'fancy'
 let g:bufferline_echo = 0
-let g:airline_theme= 'dark'
+let g:airline_theme= 'base16'
 
 " Highlight the code when it's more than 80 characters
 augroup vimrc_autocmds
