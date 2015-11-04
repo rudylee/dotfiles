@@ -116,7 +116,7 @@ let g:airline_theme= 'base16'
 " Highlight the code when it's more than 80 characters
 augroup vimrc_autocmds
   autocmd BufEnter * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-  autocmd BufEnter * match OverLength /\%81v.\+/ 
+  autocmd BufEnter * match OverLength /\%81v.\+/
 augroup END
 
 " Clean trailing whitespace
