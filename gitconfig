@@ -7,7 +7,7 @@
 [alias]
     st = status
     sq = rebase -i HEAD~2
-    ci = commit
+    cm = commit -m
     co = checkout
     di = diff
     dc = diff --cached
