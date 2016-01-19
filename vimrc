@@ -25,12 +25,9 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'chase/vim-ansible-yaml'
 Bundle 'mattn/emmet-vim'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'rizzatti/dash.vim'
 Bundle 'bling/vim-bufferline'
 Bundle 'bling/vim-airline'
 
@@ -113,10 +110,10 @@ let g:Powerline_symbols = 'fancy'
 let g:bufferline_echo = 0
 let g:airline_theme= 'base16'
 
-" Highlight the code when it's more than 80 characters
+" Highlight ruby code when the line is more than 80 characters
 augroup vimrc_autocmds
-  autocmd BufEnter * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-  autocmd BufEnter * match OverLength /\%81v.\+/
+  autocmd BufEnter *.rb highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  autocmd BufEnter *.rb match OverLength /\%81v.\+/
 augroup END
 
 " Clean trailing whitespace
