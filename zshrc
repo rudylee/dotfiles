@@ -86,3 +86,6 @@ stty start undef
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# https://github.com/robbyrussell/oh-my-zsh/issues/433
+alias rake='noglob rake' 
