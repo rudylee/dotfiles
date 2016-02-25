@@ -119,6 +119,9 @@ augroup END
 " Clean trailing whitespace
 nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 
+" Prettify JSON
+nnoremap <leader>pp :%!python -m json.tool<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The Silver Searcher <http://robots.thoughtbot.com/faster-grepping-in-vim>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
