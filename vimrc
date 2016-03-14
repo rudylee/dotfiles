@@ -31,12 +31,6 @@ Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'bling/vim-bufferline'
 Bundle 'bling/vim-airline'
 
-" Snipmate
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'honza/vim-snippets'
-Bundle 'garbas/vim-snipmate'
-
 " Test plugins
 Bundle 'tpope/vim-rvm'
 Bundle 'tpope/vim-dispatch'
