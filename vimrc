@@ -97,6 +97,7 @@ let g:ctrlp_working_path_mode = 'a'
 let g:NERDTreeDirArrows=0
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2
+let NERDTreeShowLineNumbers=1
 
 " Airline configuration
 let g:airline_powerline_fonts = 1
