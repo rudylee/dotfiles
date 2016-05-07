@@ -95,7 +95,6 @@ let g:ctrlp_working_path_mode = 'a'
 
 " NERDTree configuration
 let g:NERDTreeDirArrows=0
-let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2
 let NERDTreeShowLineNumbers=1
 
