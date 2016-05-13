@@ -9,6 +9,7 @@
     sq = rebase -i HEAD~2
     cm = commit -m
     co = checkout
+    cl = clone
     di = diff
     dc = diff --cached
     amend = commit --amend
