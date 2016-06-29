@@ -36,6 +36,11 @@ Bundle 'tpope/vim-rvm'
 Bundle 'tpope/vim-dispatch'
 Bundle 'skalnik/vim-vroom'
 Bundle 'benmills/vimux'
+
+" Javascript
+Bundle 'othree/yajs.vim'
+Bundle 'gavocanov/vim-js-indent'
+
 let g:vroom_use_vimux = 1
 let g:vroom_write_all = 1
 let g:VimuxHeight = "20"
