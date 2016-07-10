@@ -13,44 +13,34 @@ set hidden
 set lazyredraw
 
 " Plugins
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call plug#begin('~/.vim/plugged')
 
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'mattn/emmet-vim'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'bling/vim-bufferline'
-Bundle 'bling/vim-airline'
-
-" Test plugins
-Bundle 'tpope/vim-rvm'
-Bundle 'tpope/vim-dispatch'
-Bundle 'skalnik/vim-vroom'
-Bundle 'benmills/vimux'
+Plug 'gmarik/vundle'
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'vim-ruby/vim-ruby'
+Plug 'mattn/emmet-vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'bling/vim-bufferline'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Javascript
-Bundle 'othree/yajs.vim'
-Bundle 'gavocanov/vim-js-indent'
+Plug 'othree/yajs.vim'
+Plug 'gavocanov/vim-js-indent'
 
-let g:vroom_use_vimux = 1
-let g:vroom_write_all = 1
-let g:VimuxHeight = "20"
+call plug#end()
 
 filetype off
 filetype plugin indent on
 syntax on
 
-" Set color to solarized and set 256 color
-let g:solarized_termcolors=16
 set background=dark
 set t_Co=256
 set term=xterm-256color
@@ -58,12 +48,6 @@ colorscheme base16-ocean
 
 " Set up leader key to <,>
 let mapleader = ","
-
-" Disable Arrows Keys
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
 
 " Map leader+<,> to open NERDTree
 nmap <leader>ne :NERDTree<cr>
