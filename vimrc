@@ -15,25 +15,33 @@ set lazyredraw
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'gmarik/vundle'
+" Tools
 Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-rails'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'vim-ruby/vim-ruby'
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'gregsexton/MatchTag'
+
+" Colorscheme and UI
+Plug 'morhetz/gruvbox'
 Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Javascript
-Plug 'othree/yajs.vim'
-Plug 'gavocanov/vim-js-indent'
+" Ruby
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
+
+" Javascript and React
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx'
 
 call plug#end()
 
@@ -44,7 +52,7 @@ syntax on
 set background=dark
 set t_Co=256
 set term=xterm-256color
-colorscheme base16-ocean
+colorscheme gruvbox
 
 " Set up leader key to <,>
 let mapleader = ","
@@ -126,3 +134,5 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 nnoremap \ :Ag<SPACE>
+
+set t_ut=
