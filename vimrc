@@ -100,6 +100,7 @@ let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'fancy'
 let g:bufferline_echo = 0
 let g:airline_theme= 'base16'
+let g:airline#extensions#tabline#enabled = 1
 
 " Highlight ruby code when the line is more than 80 characters
 augroup vimrc_autocmds
