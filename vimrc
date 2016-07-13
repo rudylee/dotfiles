@@ -20,7 +20,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
+Plug 'lambdalisue/vim-gita', { 'on': ['Gita'] }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'mattn/emmet-vim'
@@ -45,10 +45,6 @@ Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
 
 call plug#end()
-
-filetype off
-filetype plugin indent on
-syntax on
 
 set background=dark
 set t_Co=256
