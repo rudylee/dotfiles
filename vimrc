@@ -29,6 +29,10 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gregsexton/MatchTag'
 
+" Code Completion
+Plug 'Shougo/neocomplete.vim'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
 Plug 'bling/vim-bufferline'
@@ -38,6 +42,10 @@ Plug 'vim-airline/vim-airline-themes'
 " Ruby
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
+
+" PHP
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'captbaritone/better-indent-support-for-php-with-html'
 
 " Javascript and React
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
@@ -83,6 +91,10 @@ map <C-t> <esc>:tabnew<CR>
 " Key mapping for window management
 map <C-x> <C-w>c
 map <Leader>w <C-w>w
+
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " CtrlP Configuration
 let g:ctrlp_working_path_mode = 'a'
