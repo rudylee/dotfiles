@@ -31,7 +31,7 @@ Plug 'gregsexton/MatchTag'
 
 " Code Completion
 Plug 'Shougo/neocomplete.vim'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
@@ -96,6 +96,9 @@ map <Leader>w <C-w>w
 let g:neocomplete#enable_at_startup = 1
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
+" Enable jsx syntax
+let g:jsx_ext_required = 0
+
 " CtrlP Configuration
 let g:ctrlp_working_path_mode = 'a'
 
@@ -115,6 +118,9 @@ let g:airline#extensions#tabline#enabled = 1
 augroup vimrc_autocmds
   autocmd BufEnter *.rb highlight OverLength ctermbg=red ctermfg=white guibg=#592929
   autocmd BufEnter *.rb match OverLength /\%81v.\+/
+
+  autocmd BufEnter *.php set tabstop=4
+  autocmd BufEnter *.php set shiftwidth=4
 augroup END
 
 " Clean trailing whitespace
