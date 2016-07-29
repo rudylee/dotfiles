@@ -29,10 +29,6 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gregsexton/MatchTag'
 
-" Code Completion
-Plug 'Shougo/neocomplete.vim'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
 Plug 'bling/vim-bufferline'
@@ -86,10 +82,6 @@ map <C-t> <esc>:tabnew<CR>
 " Key mapping for window management
 map <C-x> <C-w>c
 map <Leader>w <C-w>w
-
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Enable jsx syntax
 let g:jsx_ext_required = 0
