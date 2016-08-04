@@ -1,3 +1,4 @@
+set encoding=utf8
 set nocompatible
 set nu
 set nobackup
@@ -17,10 +18,11 @@ set lazyredraw
 call plug#begin('~/.vim/plugged')
 
 " Tools
-Plug 'kien/ctrlp.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-endwise'
-Plug 'lambdalisue/vim-gita', { 'on': ['Gita'] }
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'mattn/emmet-vim'
