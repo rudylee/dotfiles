@@ -50,7 +50,16 @@ Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
 
+" Autocomplete
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+
 call plug#end()
+
+" Enable deoplete
+let g:deoplete#enable_at_startup = 1
 
 set background=dark
 colorscheme gruvbox
