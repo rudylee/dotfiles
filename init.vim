@@ -55,11 +55,17 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'carlitux/deoplete-ternjs'
+Plug 'ervandew/supertab'
+Plug 'neomake/neomake'
 
 call plug#end()
 
 " Enable deoplete
 let g:deoplete#enable_at_startup = 1
+let g:tern_request_timeout = 1
+let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
+set completeopt-=preview
 
 set background=dark
 colorscheme gruvbox
@@ -151,3 +157,23 @@ nnoremap \ :Ag<SPACE>
 
 " Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
 set t_ut=
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Linting <https://github.com/mhartington/dotfiles/blob/master/vimrc>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! neomake#makers#ft#javascript#eslint()
+    return {
+        \ 'args': ['-f', 'compact'],
+        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+        \ '%W%f: line %l\, col %c\, Warning - %m'
+        \ }
+endfunction
+let g:neomake_javascript_enabled_makers = ['eslint']
+autocmd! BufWritePost * Neomake
+function! JscsFix()
+    let l:winview = winsaveview()
+    % ! jscs -x
+    call winrestview(l:winview)
+endfunction
+command JscsFix :call JscsFix()
+noremap <leader>j :JscsFix<CR>
