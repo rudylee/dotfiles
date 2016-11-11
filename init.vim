@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 " Tools
 Plug 'ryanoasis/vim-devicons'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'd11wtq/ctrlp_bdelete.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -105,6 +106,7 @@ let g:jsx_ext_required = 0
 
 " CtrlP Configuration
 let g:ctrlp_working_path_mode = 'a'
+call ctrlp_bdelete#init()
 
 " NERDTree configuration
 let g:NERDTreeDirArrows=0
