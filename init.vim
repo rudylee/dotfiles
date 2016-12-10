@@ -32,6 +32,7 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'mileszs/ack.vim'
+Plug 'benmills/vimux'
 
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
@@ -136,6 +137,9 @@ nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " Prettify JSON
 nnoremap <leader>pp :%!python -m json.tool<cr>
 
+" Run current test file inside tmux pane
+nnoremap <leader>r :VimuxRunCommand "npm run test:local -- ".@%<cr>
+
 " Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
 set t_ut=
 
@@ -173,12 +177,7 @@ function! neomake#makers#ft#javascript#eslint()
         \ '%W%f: line %l\, col %c\, Warning - %m'
         \ }
 endfunction
+
 let g:neomake_javascript_enabled_makers = ['eslint']
+
 autocmd! BufWritePost * Neomake
-function! JscsFix()
-    let l:winview = winsaveview()
-    % ! jscs -x
-    call winrestview(l:winview)
-endfunction
-command JscsFix :call JscsFix()
-noremap <leader>j :JscsFix<CR>
