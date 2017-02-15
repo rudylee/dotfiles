@@ -2,6 +2,8 @@ set encoding=utf8
 set nocompatible
 set nu
 set nobackup
+set nocursorline
+set nocursorcolumn
 set nowritebackup
 set noswapfile
 set hlsearch
@@ -9,9 +11,9 @@ set ruler
 set laststatus=2
 set tabstop=2
 set shiftwidth=2
+set scrolljump=5
 set expandtab
 set hidden
-set cursorline
 set lazyredraw
 
 " Plugins
@@ -36,7 +38,6 @@ Plug 'benmills/vimux'
 
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
-Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 

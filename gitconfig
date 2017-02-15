@@ -5,6 +5,7 @@
 [color]
     ui = auto
 [alias]
+    am = commit --amend
     st = status
     sq = rebase -i HEAD~2
     cm = commit -m
