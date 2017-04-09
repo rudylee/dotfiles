@@ -48,8 +48,8 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 # User configuration
+eval "$(rbenv init -)"
 
-export PATH="$PATH:/Users/rudy/.rvm/gems/ruby-2.1.4/bin:/Users/rudy/.rvm/gems/ruby-2.1.4@global/bin:/Users/rudy/.rvm/rubies/ruby-2.1.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/rudy/.rvm/bin"
 export EDITOR='vim'
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -85,7 +85,7 @@ stty start undef
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 # https://github.com/robbyrussell/oh-my-zsh/issues/433
-alias rake='noglob rake' 
+alias rake='noglob rake'
+
+alias mux='tmuxinator'
