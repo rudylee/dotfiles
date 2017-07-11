@@ -15,6 +15,8 @@ set scrolljump=5
 set expandtab
 set hidden
 set lazyredraw
+set ttyfast
+set re=1
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -38,8 +40,6 @@ Plug 'benmills/vimux'
 
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 " Ruby
 Plug 'tpope/vim-rails'
@@ -53,6 +53,9 @@ Plug 'captbaritone/better-indent-support-for-php-with-html'
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
+
+" Coffeescript
+Plug 'kchmck/vim-coffee-script'
 
 " Autocomplete
 function! DoRemote(arg)
@@ -116,13 +119,6 @@ let g:NERDTreeDirArrows=0
 let NERDTreeChDirMode=2
 let NERDTreeShowLineNumbers=1
 
-" Airline configuration
-let g:airline_powerline_fonts = 1
-let g:Powerline_symbols = 'fancy'
-let g:bufferline_echo = 0
-let g:airline_theme= 'base16'
-let g:airline#extensions#tabline#enabled = 1
-
 " Highlight ruby code when the line is more than 80 characters
 augroup vimrc_autocmds
   autocmd BufEnter *.rb highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -139,7 +135,9 @@ nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 nnoremap <leader>pp :%!python -m json.tool<cr>
 
 " Run current test file inside tmux pane
-nnoremap <leader>r :VimuxRunCommand "npm run test:local -- ".@%<cr>
+if &ft=='ruby'
+  nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
+endif
 
 " Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
 set t_ut=
