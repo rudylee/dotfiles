@@ -23,13 +23,12 @@ call plug#begin('~/.vim/plugged')
 
 " Tools
 Plug 'ryanoasis/vim-devicons'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'd11wtq/ctrlp_bdelete.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'Shougo/denite.nvim'
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
@@ -97,9 +96,6 @@ imap <C-s> <ESC>:w<cr>a
 map <C-q> :bp\|bd #<cr>
 imap <C-q> <ESC>:bp\|bd #<cr>
 
-" Use jj as ESC
-:imap jj <Esc>
-
 " Key mapping for tab
 map <C-t> <esc>:tabnew<CR>
 
@@ -109,10 +105,6 @@ map <Leader>w <C-w>w
 
 " Enable jsx syntax
 let g:jsx_ext_required = 0
-
-" CtrlP Configuration
-let g:ctrlp_working_path_mode = 'a'
-call ctrlp_bdelete#init()
 
 " NERDTree configuration
 let g:NERDTreeDirArrows=0
@@ -135,12 +127,48 @@ nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 nnoremap <leader>pp :%!python -m json.tool<cr>
 
 " Run current test file inside tmux pane
-if &ft=='ruby'
-  nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
-endif
+nnoremap <leader>r :VimuxRunCommand "bundle exec spring rspec ".@%<cr>
 
 " Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
 set t_ut=
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Denite
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
+
+" Change mappings.
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-j>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-k>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-d>',
+      \ '<denite:do_action:delete>',
+      \ 'noremap'
+      \)
+
+nnoremap <C-p> :<C-u>Denite file_rec<CR>
+nnoremap <leader>s :<C-u>Denite buffer<CR>
+
+augroup deniteresize
+  autocmd!
+  autocmd VimResized,VimEnter * call denite#custom#option('default',
+        \'winheight', winheight(0) / 5)
+augroup end
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The Silver Searcher <http://robots.thoughtbot.com/faster-grepping-in-vim>
@@ -150,12 +178,6 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   let g:ackprg = 'ag --vimgrep'
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 " bind K to grep word under cursor
