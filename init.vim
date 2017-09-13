@@ -133,6 +133,13 @@ nnoremap <leader>r :VimuxRunCommand "bundle exec spring rspec ".@%<cr>
 set t_ut=
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Neocomplete
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Denite
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
@@ -167,7 +174,7 @@ nnoremap <leader>s :<C-u>Denite buffer<CR>
 augroup deniteresize
   autocmd!
   autocmd VimResized,VimEnter * call denite#custom#option('default',
-        \'winheight', winheight(0) / 5)
+        \'winheight', winheight(0) / 3)
 augroup end
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
