@@ -36,6 +36,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
@@ -94,6 +95,9 @@ imap <C-s> <ESC>:w<cr>a
 " Map CTRL+Q to close buffer
 map <C-q> :bp\|bd #<cr>
 imap <C-q> <ESC>:bp\|bd #<cr>
+
+" Map semicolon to colon
+map ; :
 
 " Key mapping for tab
 map <C-t> <esc>:tabnew<CR>
