@@ -28,6 +28,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'Shougo/denite.nvim'
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
@@ -54,6 +55,9 @@ Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
 
+" Node
+Plug 'moll/vim-node'
+
 " Coffeescript
 Plug 'kchmck/vim-coffee-script'
 
@@ -64,6 +68,7 @@ endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'neomake/neomake'
+Plug 'benjie/neomake-local-eslint.vim'
 
 call plug#end()
 
@@ -151,7 +156,7 @@ inoremap <silent><expr> <TAB>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Denite
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--ignore', 'node_modules', '-g', ''])
 call denite#custom#var('grep', 'command', ['ag'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
