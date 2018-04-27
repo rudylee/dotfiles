@@ -46,10 +46,6 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 
-" PHP
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-Plug 'captbaritone/better-indent-support-for-php-with-html'
-
 " Javascript and React
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
@@ -57,9 +53,6 @@ Plug 'mxw/vim-jsx'
 
 " Node
 Plug 'moll/vim-node'
-
-" Coffeescript
-Plug 'kchmck/vim-coffee-script'
 
 " Autocomplete
 function! DoRemote(arg)
@@ -84,8 +77,9 @@ colorscheme gruvbox
 " Set up leader key to <,>
 let mapleader = ","
 
-" Map leader+<,> to open NERDTree
+" Key mapping for NERDTree
 nmap <leader>ne :NERDTree<cr>
+nmap <leader>n :NERDTreeFind<CR>
 
 " Map Keys for Managing Buffers
 map <C-J> :bnext<CR>
@@ -135,7 +129,7 @@ nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 nnoremap <leader>pp :%!python -m json.tool<cr>
 
 " Run current test file inside tmux pane
-nnoremap <leader>r :VimuxRunCommand "bundle exec spring rspec ".@%<cr>
+nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
 
 " Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
 set t_ut=
