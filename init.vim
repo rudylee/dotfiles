@@ -54,6 +54,13 @@ Plug 'mxw/vim-jsx'
 " Node
 Plug 'moll/vim-node'
 
+" Go
+Plug 'fatih/vim-go'
+
+" CoffeeScript
+Plug 'kchmck/vim-coffee-script'
+Plug 'nikvdp/ejs-syntax'
+
 " Autocomplete
 function! DoRemote(arg)
   UpdateRemotePlugins
