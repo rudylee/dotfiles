@@ -224,3 +224,9 @@ endfunction
 let g:neomake_javascript_enabled_makers = ['eslint']
 
 autocmd! BufWritePost * Neomake
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Go
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" goimports on save
+let g:go_fmt_command = "goimports"
