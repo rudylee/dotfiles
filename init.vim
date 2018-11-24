@@ -39,8 +39,15 @@ Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
 Plug 'ludovicchabant/vim-gutentags'
 
+" Window
+Plug 'roman/golden-ratio'
+
+" HTML
+Plug 'othree/html5.vim'
+
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
+Plug 'KeitaNakamura/neodark.vim'
 
 " Ruby
 Plug 'tpope/vim-rails'
@@ -113,7 +120,7 @@ map <C-x> <C-w>c
 map <Leader>w <C-w>w
 
 " Enable jsx syntax
-let g:jsx_ext_required = 0
+" let g:jsx_ext_required = 0
 
 " NERDTree configuration
 let g:NERDTreeDirArrows=0
