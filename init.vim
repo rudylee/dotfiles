@@ -37,7 +37,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
 " Window
 Plug 'roman/golden-ratio'
@@ -67,6 +67,16 @@ Plug 'fatih/vim-go'
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script'
 Plug 'nikvdp/ejs-syntax'
+
+" TypeScript
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+
+let g:neomake_typescript_enabled_makers=['tslint', 'tsc']
+let g:neomake_typescript_tslint_maker={
+ \ 'exe': 'tslint',
+ \ 'args': ['-t', 'msbuild']
+ \ }
 
 " Autocomplete
 function! DoRemote(arg)
@@ -147,6 +157,17 @@ nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
 
 " Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
 set t_ut=
+
+" vim-gutentags
+let g:gutentags_exclude = [
+      \ '*.min.js',
+      \ '*html*',
+      \ 'jquery*.js',
+      \ '*/vendor/*',
+      \ '*/node_modules/*',
+      \ '*/python2.7/*',
+      \ '*/migrate/*.rb'
+      \ ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Deoplete
