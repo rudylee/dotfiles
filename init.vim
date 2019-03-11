@@ -22,7 +22,6 @@ set re=1
 call plug#begin('~/.vim/plugged')
 
 " Tools
-Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -37,7 +36,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Window
 Plug 'roman/golden-ratio'
@@ -47,7 +46,7 @@ Plug 'othree/html5.vim'
 
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
-Plug 'KeitaNakamura/neodark.vim'
+Plug 'mhartington/oceanic-next'
 
 " Ruby
 Plug 'tpope/vim-rails'
@@ -55,7 +54,7 @@ Plug 'vim-ruby/vim-ruby'
 
 " Javascript and React
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
+Plug 'jason0x43/vim-js-indent'
 Plug 'mxw/vim-jsx'
 
 " Node
@@ -70,7 +69,8 @@ Plug 'nikvdp/ejs-syntax'
 
 " TypeScript
 Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 
 let g:neomake_typescript_enabled_makers=['tslint', 'tsc']
 let g:neomake_typescript_tslint_maker={
@@ -91,12 +91,17 @@ call plug#end()
 
 " Enable deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 0
 let g:tern_request_timeout = 1
 let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
 set completeopt-=preview
 
-set background=dark
-colorscheme gruvbox
+" set background=dark
+if (has("termguicolors"))
+ set termguicolors
+endif
+syntax enable
+colorscheme OceanicNext
 
 " Set up leader key to <,>
 let mapleader = ","
@@ -130,7 +135,7 @@ map <C-x> <C-w>c
 map <Leader>w <C-w>w
 
 " Enable jsx syntax
-" let g:jsx_ext_required = 0
+let g:jsx_ext_required = 0
 
 " NERDTree configuration
 let g:NERDTreeDirArrows=0
@@ -155,10 +160,14 @@ nnoremap <leader>pp :%!python -m json.tool<cr>
 " Run current test file inside tmux pane
 nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
 
+" Run rubocop on current file
+nnoremap <leader>b :VimuxRunCommand "bundle exec rubocop ".@%<cr>
+
 " Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
 set t_ut=
 
 " vim-gutentags
+let g:gutentags_generate_on_write=0
 let g:gutentags_exclude = [
       \ '*.min.js',
       \ '*html*',
