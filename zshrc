@@ -86,6 +86,16 @@ stty start undef
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # https://github.com/robbyrussell/oh-my-zsh/issues/433
-alias rake='noglob rake'
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias g='hub'
+alias k='kubectl'
 alias mux='tmuxinator'
+alias rake='noglob rake'
+alias vi='nvim'
+alias vim='nvim'
+
+export PATH=$HOME/google-cloud-sdk/bin:$HOME/go/bin:$PATH
