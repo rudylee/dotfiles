@@ -83,6 +83,7 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'carlitux/deoplete-ternjs'
 Plug 'neomake/neomake'
 Plug 'benjie/neomake-local-eslint.vim'
@@ -194,7 +195,7 @@ inoremap <silent><expr> <TAB>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Denite
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--ignore', 'node_modules', '-g', ''])
+call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--ignore', 'node_modules', '-g', ''])
 call denite#custom#var('grep', 'command', ['ag'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
@@ -220,7 +221,7 @@ call denite#custom#map(
       \ 'noremap'
       \)
 
-nnoremap <C-p> :<C-u>Denite file_rec<CR>
+nnoremap <C-p> :<C-u>Denite file/rec<CR>
 nnoremap <leader>s :<C-u>Denite buffer<CR>
 
 augroup deniteresize
@@ -250,13 +251,13 @@ nnoremap \ :Ack<SPACE>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Linting <https://github.com/mhartington/dotfiles/blob/master/vimrc>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! neomake#makers#ft#javascript#eslint()
-    return {
-        \ 'args': ['-f', 'compact'],
-        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-        \ '%W%f: line %l\, col %c\, Warning - %m'
-        \ }
-endfunction
+" function! neomake#makers#ft#javascript#eslint()
+"    return {
+"        \ 'args': ['-f', 'compact'],
+"        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+"        \ '%W%f: line %l\, col %c\, Warning - %m'
+"        \ }
+" endfunction
 
 let g:neomake_javascript_enabled_makers = ['eslint']
 
