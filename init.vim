@@ -17,6 +17,9 @@ set hidden
 set lazyredraw
 set ttyfast
 set re=1
+setlocal autoindent
+setlocal cindent
+setlocal smartindent
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -28,11 +31,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
-Plug 'Shougo/denite.nvim'
+Plug 'Shougo/denite.nvim', { 'commit': '49358751031dd26648befa671332af887a0aa62b' }
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
@@ -68,8 +70,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'nikvdp/ejs-syntax'
 
 " TypeScript
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 
 let g:neomake_typescript_enabled_makers=['tslint', 'tsc']
@@ -125,6 +126,12 @@ imap <C-s> <ESC>:w<cr>a
 map <C-q> :bp\|bd #<cr>
 imap <C-q> <ESC>:bp\|bd #<cr>
 
+" Create new buffer
+nnoremap <leader>B :enew<cr>
+
+" Close all buffers
+nnoremap <leader>ba :bufdo bd!<cr>
+
 " Map semicolon to colon
 map ; :
 
@@ -134,6 +141,9 @@ map <C-t> <esc>:tabnew<CR>
 " Key mapping for window management
 map <C-x> <C-w>c
 map <Leader>w <C-w>w
+
+" Edit Vimrc
+command! Vimrc :vs $MYVIMRC
 
 " Enable jsx syntax
 let g:jsx_ext_required = 0
@@ -168,6 +178,7 @@ nnoremap <leader>b :VimuxRunCommand "bundle exec rubocop ".@%<cr>
 set t_ut=
 
 " vim-gutentags
+let g:gutentags_ctags_tagfile='.git/tags'
 let g:gutentags_generate_on_write=0
 let g:gutentags_exclude = [
       \ '*.min.js',
@@ -266,5 +277,5 @@ autocmd! BufWritePost * Neomake
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" goimports on save
+" run goimports on save
 let g:go_fmt_command = "goimports"
