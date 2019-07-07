@@ -17,6 +17,7 @@ set hidden
 set lazyredraw
 set ttyfast
 set re=1
+set cursorline!
 setlocal autoindent
 setlocal cindent
 setlocal smartindent
@@ -32,10 +33,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'Shougo/denite.nvim', { 'commit': '49358751031dd26648befa671332af887a0aa62b' }
-Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'gregsexton/MatchTag'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
 Plug 'ludovicchabant/vim-gutentags'
@@ -157,9 +155,6 @@ let NERDTreeShowLineNumbers=1
 augroup vimrc_autocmds
   autocmd BufEnter *.rb highlight OverLength ctermbg=red ctermfg=white guibg=#592929
   autocmd BufEnter *.rb match OverLength /\%81v.\+/
-
-  autocmd BufEnter *.php set tabstop=4
-  autocmd BufEnter *.php set shiftwidth=4
 augroup END
 
 " Clean trailing whitespace
@@ -279,3 +274,10 @@ autocmd! BufWritePost * Neomake
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " run goimports on save
 let g:go_fmt_command = "goimports"
+
+" Speed up syntax highlighting
+" https://vim.fandom.com/wiki/Speed_up_Syntax_Highlighting
+augroup vimrc
+  autocmd!
+  autocmd BufWinEnter,Syntax * syn sync minlines=500 maxlines=500
+augroup END
