@@ -16,7 +16,6 @@ set expandtab
 set hidden
 set lazyredraw
 set ttyfast
-set re=1
 set cursorline!
 setlocal autoindent
 setlocal cindent
