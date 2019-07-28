@@ -5,29 +5,30 @@
 [color]
     ui = auto
 [alias]
+    aa = add --all
     am = commit --amend
-    st = status
-    sq = rebase -i HEAD~2
+    amend = commit --amend
+    b = branch
+    bd = branch -D
+    cl = clone
     cm = commit -m
     co = checkout
-    cl = clone
-    di = diff
     dc = diff --cached
-    amend = commit --amend
-    aa = add --all
+    dh1 = diff HEAD~1
+    di = diff
+    ds = diff --stat=160,120
+    fa = fetch --all
     ff = merge --ff-only
     ffum = merge --ff-only upstream/master
-    pullff = pull --ff-only
-    pur = pull --rebase
     noff = merge --no-ff
-    fa = fetch --all
     pom = push origin master
     pof = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\" --force"
     pob = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\""
-    b = branch
-    bd = branch -D
-    ds = diff --stat=160,120
-    dh1 = diff HEAD~1
+    pullff = pull --ff-only
+    pur = pull --rebase
+    st = status
+    sq = rebase -i HEAD~2
+    sc = !git fetch --all && git merge --ff-only upstream/master && git push origin master
 
     # Fancy logging.
     #   h = head
