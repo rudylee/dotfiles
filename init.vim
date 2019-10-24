@@ -21,6 +21,10 @@ setlocal autoindent
 setlocal cindent
 setlocal smartindent
 
+" Disable syntax higlighting after 128 columns
+set synmaxcol=128
+syntax sync minlines=256
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 
@@ -31,14 +35,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
-Plug 'Shougo/denite.nvim', { 'commit': '49358751031dd26648befa671332af887a0aa62b' }
+Plug 'Shougo/denite.nvim'
 Plug 'tomtom/tcomment_vim'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
-Plug 'ludovicchabant/vim-gutentags'
-
-" Window
-Plug 'roman/golden-ratio'
+" Plug 'ludovicchabant/vim-gutentags'
 
 " HTML
 Plug 'othree/html5.vim'
@@ -46,10 +47,6 @@ Plug 'othree/html5.vim'
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
-
-" Ruby
-Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
 
 " Javascript and React
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
@@ -76,6 +73,9 @@ let g:neomake_typescript_tslint_maker={
  \ 'args': ['-t', 'msbuild']
  \ }
 
+" Golden Ratio
+let g:golden_ratio_exclude_nonmodifiable = 1
+
 " Autocomplete
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -90,7 +90,7 @@ call plug#end()
 
 " Enable deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
+let g:deoplete#auto_complete_delay = 500
 let g:tern_request_timeout = 1
 let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
 set completeopt-=preview
@@ -164,6 +164,7 @@ nnoremap <leader>pp :%!python -m json.tool<cr>
 
 " Run current test file inside tmux pane
 nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
+nnoremap <leader>rf :VimuxRunCommand "bundle exec rspec ".@%." --tag focus"<cr>
 
 " Run rubocop on current file
 nnoremap <leader>b :VimuxRunCommand "bundle exec rubocop ".@%<cr>
@@ -200,40 +201,52 @@ inoremap <silent><expr> <TAB>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Denite
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--ignore', 'node_modules', '-g', ''])
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
+endfunction
 
-" Change mappings.
-call denite#custom#map(
-      \ 'insert',
-      \ '<C-j>',
-      \ '<denite:move_to_next_line>',
-      \ 'noremap'
-      \)
-call denite#custom#map(
-      \ 'insert',
-      \ '<C-k>',
-      \ '<denite:move_to_previous_line>',
-      \ 'noremap'
-      \)
-call denite#custom#map(
-      \ 'insert',
-      \ '<C-d>',
-      \ '<denite:do_action:delete>',
-      \ 'noremap'
-      \)
+call denite#custom#option('_', {
+     \ 'prompt': '❯',
+     \ 'winheight': 10,
+     \ 'updatetime': 1,
+     \ 'auto_resize': 0,
+     \ 'highlight_matched_char': 'Underlined',
+     \ 'highlight_mode_normal': 'CursorLine',
+     \ 'reversed': 1,
+     \ 'auto-accel': 1,
+     \ 'start_filter': 1,
+     \})
 
 nnoremap <C-p> :<C-u>Denite file/rec<CR>
 nnoremap <leader>s :<C-u>Denite buffer<CR>
 
-augroup deniteresize
-  autocmd!
-  autocmd VimResized,VimEnter * call denite#custom#option('default',
-        \'winheight', winheight(0) / 3)
-augroup end
+" Change file/rec command.
+call denite#custom#var('file/rec', 'command',
+\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>    denite#do_map('do_action')
+
+  nnoremap <silent><buffer><expr> <Tab>    denite#do_map('choose_action')
+  nnoremap <silent><buffer><expr> <ESC>   denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select')
+  nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+endfunction
+
+autocmd FileType denite-filter call s:denite_filter_settings()
+function s:denite_filter_settings() abort
+  setl nonumber
+  call deoplete#custom#buffer_option('auto_complete', v:false)
+
+  inoremap <silent><buffer><expr> <ESC> denite#do_map('quit')
+  inoremap <silent><buffer> <CR>  <ESC><C-w>p:call denite#call_map('do_action')<CR>
+  inoremap <silent><buffer> <Tab>   <Esc><C-w>p:call denite#call_map('choose_action')<CR>
+  inoremap <silent><buffer> <Space> <Esc><C-w>p:call denite#call_map('toggle_select')<CR><C-w>pA
+  inoremap <silent><buffer> <C-j>   <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
+  inoremap <silent><buffer> <C-k>   <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The Silver Searcher <http://robots.thoughtbot.com/faster-grepping-in-vim>
@@ -263,8 +276,8 @@ nnoremap \ :Ack<SPACE>
 "        \ '%W%f: line %l\, col %c\, Warning - %m'
 "        \ }
 " endfunction
-
-let g:neomake_javascript_enabled_makers = ['eslint']
+"
+" let g:neomake_javascript_enabled_makers = ['eslint']
 
 autocmd! BufWritePost * Neomake
 
