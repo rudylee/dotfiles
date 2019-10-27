@@ -39,7 +39,6 @@ Plug 'Shougo/denite.nvim'
 Plug 'tomtom/tcomment_vim'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
-" Plug 'ludovicchabant/vim-gutentags'
 
 " HTML
 Plug 'othree/html5.vim'
@@ -59,6 +58,9 @@ Plug 'moll/vim-node'
 " Go
 Plug 'fatih/vim-go'
 
+" CoC
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script'
 Plug 'nikvdp/ejs-syntax'
@@ -67,33 +69,12 @@ Plug 'nikvdp/ejs-syntax'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 
-let g:neomake_typescript_enabled_makers=['tslint', 'tsc']
-let g:neomake_typescript_tslint_maker={
- \ 'exe': 'tslint',
- \ 'args': ['-t', 'msbuild']
- \ }
-
-" Golden Ratio
-let g:golden_ratio_exclude_nonmodifiable = 1
-
 " Autocomplete
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-Plug 'carlitux/deoplete-ternjs'
-Plug 'neomake/neomake'
-Plug 'benjie/neomake-local-eslint.vim'
 
 call plug#end()
-
-" Enable deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 500
-let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
-set completeopt-=preview
 
 " set background=dark
 if (has("termguicolors"))
@@ -105,9 +86,8 @@ colorscheme OceanicNext
 " Set up leader key to <,>
 let mapleader = ","
 
-" Key mapping for NERDTree
-nmap <leader>ne :NERDTree<cr>
-nmap <leader>n :NERDTreeFind<CR>
+" Hide bookmarks and help text
+let g:NERDTreeMinimalUI = 1
 
 " Map Keys for Managing Buffers
 map <C-J> :bnext<CR>
@@ -121,7 +101,7 @@ imap <C-s> <ESC>:w<cr>a
 
 " Map CTRL+Q to close buffer
 map <C-q> :bp\|bd #<cr>
-imap <C-q> <ESC>:bp\|bd #<cr>
+imap <C-q> <ESC>:bd #<cr>
 
 " Create new buffer
 nnoremap <leader>B :enew<cr>
@@ -145,11 +125,6 @@ command! Vimrc :vs $MYVIMRC
 " Enable jsx syntax
 let g:jsx_ext_required = 0
 
-" NERDTree configuration
-let g:NERDTreeDirArrows=0
-let NERDTreeChDirMode=2
-let NERDTreeShowLineNumbers=1
-
 " Highlight ruby code when the line is more than 80 characters
 augroup vimrc_autocmds
   autocmd BufEnter *.rb highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -162,6 +137,12 @@ nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " Prettify JSON
 nnoremap <leader>pp :%!python -m json.tool<cr>
 
+" Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
+set t_ut=
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimux
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Run current test file inside tmux pane
 nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
 nnoremap <leader>rf :VimuxRunCommand "bundle exec rspec ".@%." --tag focus"<cr>
@@ -169,34 +150,34 @@ nnoremap <leader>rf :VimuxRunCommand "bundle exec rspec ".@%." --tag focus"<cr>
 " Run rubocop on current file
 nnoremap <leader>b :VimuxRunCommand "bundle exec rubocop ".@%<cr>
 
-" Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
-set t_ut=
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeDirArrows=0
+let NERDTreeChDirMode=2
+let NERDTreeShowLineNumbers=1
 
-" vim-gutentags
-let g:gutentags_ctags_tagfile='.git/tags'
-let g:gutentags_generate_on_write=0
-let g:gutentags_exclude = [
-      \ '*.min.js',
-      \ '*html*',
-      \ 'jquery*.js',
-      \ '*/vendor/*',
-      \ '*/node_modules/*',
-      \ '*/python2.7/*',
-      \ '*/migrate/*.rb'
-      \ ]
+nmap <leader>ne :NERDTree<cr>
+nmap <leader>n :NERDTreeFind<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Deoplete
+" Coc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
 
-inoremap <silent><expr> <TAB>
-		\ pumvisible() ? "\<C-n>" :
-		\ <SID>check_back_space() ? "\<TAB>" :
-		\ deoplete#mappings#manual_complete()
-		function! s:check_back_space() abort "{{{
-		let col = col('.') - 1
-		return !col || getline('.')[col - 1]  =~ '\s'
-		endfunction"}}}
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+let g:coc_global_extensions = ['coc-solargraph']
+
+nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dr <Plug>(coc-references)
+nmap <silent> <leader>dj <Plug>(coc-implementation)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Denite
@@ -208,40 +189,52 @@ endfunction
 
 call denite#custom#option('_', {
      \ 'prompt': '❯',
-     \ 'winheight': 10,
+     \ 'winheight': 15,
      \ 'updatetime': 1,
      \ 'auto_resize': 0,
      \ 'highlight_matched_char': 'Underlined',
      \ 'highlight_mode_normal': 'CursorLine',
-     \ 'reversed': 1,
      \ 'auto-accel': 1,
      \ 'start_filter': 1,
+     \ 'vertical_preview': 1,
+     \})
+
+call denite#custom#source('file/rec', 'vars', {
+     \'command': ['rg', '--files', '--glob', '!.git'],
+     \'matchers': ['matcher/fruzzy'],
+     \'sorters':['sorter_sublime'],
+     \})
+
+call denite#custom#source('grep', 'vars', {
+     \'command': ['rg'],
+     \'default_opts': ['-i', '--vimgrep'],
+     \'recursive_opts': [],
+     \'pattern_opt': [],
+     \'separator': ['--'],
+     \'final_opts': [],
+     \'matchers': ['matcher/ignore_globs', 'matcher/regexp', 'matcher/pyfuzzy']
      \})
 
 nnoremap <C-p> :<C-u>Denite file/rec<CR>
 nnoremap <leader>s :<C-u>Denite buffer<CR>
 
-" Change file/rec command.
-call denite#custom#var('file/rec', 'command',
-\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <CR>    denite#do_map('do_action')
-
-  nnoremap <silent><buffer><expr> <Tab>    denite#do_map('choose_action')
+  nnoremap <silent><buffer><expr> <Tab>   denite#do_map('choose_action')
   nnoremap <silent><buffer><expr> <ESC>   denite#do_map('quit')
   nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select')
-  nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> i       denite#do_map('open_filter_buffer')
 endfunction
 
 autocmd FileType denite-filter call s:denite_filter_settings()
 function s:denite_filter_settings() abort
   setl nonumber
-  call deoplete#custom#buffer_option('auto_complete', v:false)
 
-  inoremap <silent><buffer><expr> <ESC> denite#do_map('quit')
-  inoremap <silent><buffer> <CR>  <ESC><C-w>p:call denite#call_map('do_action')<CR>
+  inoremap <silent><buffer><expr>   <ESC> denite#do_map('quit')
+  inoremap <silent><buffer> <CR>    <ESC><C-w>p:call denite#call_map('do_action')<CR>
+  inoremap <silent><buffer> <C-s>   <ESC><C-w>p:call denite#call_map('do_action', 'vsplit')<CR>
+  inoremap <silent><buffer> <C-d>   <ESC><C-w>p:call denite#call_map('do_action', 'delete')<CR><C-w>pA
   inoremap <silent><buffer> <Tab>   <Esc><C-w>p:call denite#call_map('choose_action')<CR>
   inoremap <silent><buffer> <Space> <Esc><C-w>p:call denite#call_map('toggle_select')<CR><C-w>pA
   inoremap <silent><buffer> <C-j>   <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
@@ -249,13 +242,13 @@ function s:denite_filter_settings() abort
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" The Silver Searcher <http://robots.thoughtbot.com/faster-grepping-in-vim>
+" Ack
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+if executable('rg')
+  " Use rg over grep
+  set grepprg=rg\ --nogroup\ --nocolor
 
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'rg --vimgrep'
 endif
 
 " bind K to grep word under cursor
@@ -265,21 +258,6 @@ nnoremap K :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 nnoremap \ :Ack<SPACE>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Linting <https://github.com/mhartington/dotfiles/blob/master/vimrc>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function! neomake#makers#ft#javascript#eslint()
-"    return {
-"        \ 'args': ['-f', 'compact'],
-"        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-"        \ '%W%f: line %l\, col %c\, Warning - %m'
-"        \ }
-" endfunction
-"
-" let g:neomake_javascript_enabled_makers = ['eslint']
-
-autocmd! BufWritePost * Neomake
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go
