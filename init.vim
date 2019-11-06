@@ -76,12 +76,12 @@ endfunction
 
 call plug#end()
 
-" set background=dark
 if (has("termguicolors"))
  set termguicolors
 endif
 syntax enable
-colorscheme OceanicNext
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = 1
 
 " Set up leader key to <,>
 let mapleader = ","
