@@ -13,8 +13,10 @@
     cl = clone
     cm = commit -m
     co = checkout
+    cb = checkout -b
     dc = diff --cached
     dh1 = diff HEAD~1
+    dhn = diff HEAD~1 --name-status
     di = diff
     ds = diff --stat=160,120
     fa = fetch --all
@@ -26,9 +28,11 @@
     pob = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\""
     pullff = pull --ff-only
     pur = pull --rebase
+    prd = pull-request --draft
     st = status
     sq = rebase -i HEAD~2
     sc = !git fetch --all && git merge --ff-only upstream/master && git push origin master
+    rc = rebase --continue
 
     # Fancy logging.
     #   h = head
@@ -49,3 +53,5 @@
     editor = vim
 [credential]
     helper = cache --timeout=28800
+[github]
+	user = rudylee

@@ -40,6 +40,10 @@ Plug 'tomtom/tcomment_vim'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
 
+" Github tool
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+
 " HTML
 Plug 'othree/html5.vim'
 
@@ -48,7 +52,7 @@ Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 
 " Javascript and React
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
+" Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'jason0x43/vim-js-indent'
 Plug 'mxw/vim-jsx'
 
@@ -61,6 +65,9 @@ Plug 'fatih/vim-go'
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Python
+" Plug 'numirias/semshi'
+
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script'
 Plug 'nikvdp/ejs-syntax'
@@ -68,6 +75,8 @@ Plug 'nikvdp/ejs-syntax'
 " TypeScript
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+
+Plug 'rudylee/nvim-gist'
 
 " Autocomplete
 function! DoRemote(arg)
@@ -140,6 +149,12 @@ nnoremap <leader>pp :%!python -m json.tool<cr>
 " Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
 set t_ut=
 
+" Copy to clipboard
+noremap <Leader>y "*y
+
+" Gist
+let g:gist_post_private = 1
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimux
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -147,8 +162,6 @@ set t_ut=
 nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
 nnoremap <leader>rf :VimuxRunCommand "bundle exec rspec ".@%." --tag focus"<cr>
 
-" Run rubocop on current file
-nnoremap <leader>b :VimuxRunCommand "bundle exec rubocop ".@%<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
