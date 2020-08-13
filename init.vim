@@ -55,6 +55,7 @@ Plug 'mhartington/oceanic-next'
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'jason0x43/vim-js-indent'
 Plug 'mxw/vim-jsx'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Node
 Plug 'moll/vim-node'
@@ -75,6 +76,9 @@ Plug 'nikvdp/ejs-syntax'
 " TypeScript
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+
+" GraphQL
+Plug 'jparise/vim-graphql'
 
 Plug 'rudylee/nvim-gist'
 
@@ -247,6 +251,8 @@ function s:denite_filter_settings() abort
   inoremap <silent><buffer><expr>   <ESC> denite#do_map('quit')
   inoremap <silent><buffer> <CR>    <ESC><C-w>p:call denite#call_map('do_action')<CR>
   inoremap <silent><buffer> <C-s>   <ESC><C-w>p:call denite#call_map('do_action', 'vsplit')<CR>
+  inoremap <silent><buffer> <C-v>   <ESC><C-w>p:call denite#call_map('do_action', 'split')<CR>
+  inoremap <silent><buffer> <C-t>   <ESC><C-w>p:call denite#call_map('do_action', 'tabopen')<CR>
   inoremap <silent><buffer> <C-d>   <ESC><C-w>p:call denite#call_map('do_action', 'delete')<CR><C-w>pA
   inoremap <silent><buffer> <Tab>   <Esc><C-w>p:call denite#call_map('choose_action')<CR>
   inoremap <silent><buffer> <Space> <Esc><C-w>p:call denite#call_map('toggle_select')<CR><C-w>pA

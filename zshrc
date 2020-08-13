@@ -119,6 +119,7 @@ alias mux='tmuxinator'
 alias rake='noglob rake'
 alias vi='nvim'
 alias vim='nvim'
+alias ts='tmux ls'
 alias tas='tmux attach-session -t'
 alias tks='tmux kill-session -t'
 
