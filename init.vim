@@ -36,6 +36,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'Shougo/denite.nvim'
+Plug 'raghur/fruzzy'
 Plug 'tomtom/tcomment_vim'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
@@ -52,9 +53,8 @@ Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 
 " Javascript and React
-" Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'neoclide/vim-jsx-improve'
 Plug 'jason0x43/vim-js-indent'
-Plug 'mxw/vim-jsx'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Node
@@ -66,15 +66,11 @@ Plug 'fatih/vim-go'
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Python
-" Plug 'numirias/semshi'
-
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script'
 Plug 'nikvdp/ejs-syntax'
 
 " TypeScript
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 
 " GraphQL
@@ -95,6 +91,7 @@ endif
 syntax enable
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 1
+highlight Comment cterm=italic gui=italic
 
 " Set up leader key to <,>
 let mapleader = ","
@@ -165,7 +162,6 @@ let g:gist_post_private = 1
 " Run current test file inside tmux pane
 nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
 nnoremap <leader>rf :VimuxRunCommand "bundle exec rspec ".@%." --tag focus"<cr>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
