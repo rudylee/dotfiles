@@ -50,7 +50,6 @@ Plug 'othree/html5.vim'
 
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
-Plug 'mhartington/oceanic-next'
 
 " Javascript and React
 Plug 'neoclide/vim-jsx-improve'
@@ -90,7 +89,7 @@ if (has("termguicolors"))
 endif
 syntax enable
 colorscheme gruvbox
-let g:gruvbox_contrast_dark = 1
+let g:gruvbox_contrast_dark = "medium"
 highlight Comment cterm=italic gui=italic
 
 " Set up leader key to <,>
@@ -160,8 +159,8 @@ let g:gist_post_private = 1
 " Vimux
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Run current test file inside tmux pane
-nnoremap <leader>r :VimuxRunCommand "bundle exec rspec ".@%<cr>
-nnoremap <leader>rf :VimuxRunCommand "bundle exec rspec ".@%." --tag focus"<cr>
+nnoremap <leader>r :call VimuxRunCommand("bundle exec rspec " . bufname("%"))<CR>
+nnoremap <leader>rf :call VimuxRunCommand("bundle exec rspec " . bufname("%") . " --tag focus")<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
