@@ -35,11 +35,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
-Plug 'Shougo/denite.nvim'
 Plug 'raghur/fruzzy'
 Plug 'tomtom/tcomment_vim'
 Plug 'mileszs/ack.vim'
 Plug 'benmills/vimux'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 " Github tool
 Plug 'mattn/webapi-vim'
@@ -192,68 +195,37 @@ nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Denite
+" Telescope
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-function! s:denite_filter_my_settings() abort
-  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
-endfunction
+lua << EOF
+require('telescope').load_extension('fzy_native')
 
-call denite#custom#option('_', {
-     \ 'prompt': '❯',
-     \ 'winheight': 15,
-     \ 'updatetime': 1,
-     \ 'auto_resize': 0,
-     \ 'highlight_matched_char': 'Underlined',
-     \ 'highlight_mode_normal': 'CursorLine',
-     \ 'auto-accel': 1,
-     \ 'start_filter': 1,
-     \ 'vertical_preview': 1,
-     \})
+local actions = require('telescope.actions')
 
-call denite#custom#source('file/rec', 'vars', {
-     \'command': ['rg', '--files', '--glob', '!.git'],
-     \'matchers': ['matcher/fruzzy'],
-     \'sorters':['sorter_sublime'],
-     \})
-
-call denite#custom#source('grep', 'vars', {
-     \'command': ['rg'],
-     \'default_opts': ['-i', '--vimgrep'],
-     \'recursive_opts': [],
-     \'pattern_opt': [],
-     \'separator': ['--'],
-     \'final_opts': [],
-     \'matchers': ['matcher/ignore_globs', 'matcher/regexp', 'matcher/pyfuzzy']
-     \})
-
-nnoremap <C-p> :<C-u>Denite file/rec<CR>
-nnoremap <leader>s :<C-u>Denite buffer<CR>
-
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>    denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> <Tab>   denite#do_map('choose_action')
-  nnoremap <silent><buffer><expr> <ESC>   denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select')
-  nnoremap <silent><buffer><expr> i       denite#do_map('open_filter_buffer')
-endfunction
-
-autocmd FileType denite-filter call s:denite_filter_settings()
-function s:denite_filter_settings() abort
-  setl nonumber
-
-  inoremap <silent><buffer><expr>   <ESC> denite#do_map('quit')
-  inoremap <silent><buffer> <CR>    <ESC><C-w>p:call denite#call_map('do_action')<CR>
-  inoremap <silent><buffer> <C-s>   <ESC><C-w>p:call denite#call_map('do_action', 'vsplit')<CR>
-  inoremap <silent><buffer> <C-v>   <ESC><C-w>p:call denite#call_map('do_action', 'split')<CR>
-  inoremap <silent><buffer> <C-t>   <ESC><C-w>p:call denite#call_map('do_action', 'tabopen')<CR>
-  inoremap <silent><buffer> <C-d>   <ESC><C-w>p:call denite#call_map('do_action', 'delete')<CR><C-w>pA
-  inoremap <silent><buffer> <Tab>   <Esc><C-w>p:call denite#call_map('choose_action')<CR>
-  inoremap <silent><buffer> <Space> <Esc><C-w>p:call denite#call_map('toggle_select')<CR><C-w>pA
-  inoremap <silent><buffer> <C-j>   <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
-  inoremap <silent><buffer> <C-k>   <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
-endfunction
+require('telescope').setup{
+  defaults = {
+    file_sorter = require('telescope.sorters').get_fzy_sorter,
+    mappings = {
+      i = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<esc>"] = actions.close,
+     },
+      n = {
+        ["<esc>"] = actions.close,
+      },
+    },
+    extensions = {
+      fzy_native = {
+        override_generic_sorter = false,
+        override_file_sorter = true,
+      }
+    }
+  }
+}
+EOF
+nnoremap <C-p> :lua require('telescope.builtin').find_files()<CR>
+nnoremap <leader>s <cmd>lua require('telescope.builtin').buffers()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ack
