@@ -43,6 +43,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Github tool
 Plug 'mattn/webapi-vim'
@@ -54,31 +57,13 @@ Plug 'othree/html5.vim'
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
 
-" Javascript and React
-Plug 'neoclide/vim-jsx-improve'
-Plug 'jason0x43/vim-js-indent'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
-" Node
-Plug 'moll/vim-node'
-
 " Go
 Plug 'fatih/vim-go'
-
-" CoC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" CoffeeScript
-Plug 'kchmck/vim-coffee-script'
-Plug 'nikvdp/ejs-syntax'
-
-" TypeScript
-Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 
 " GraphQL
 Plug 'jparise/vim-graphql'
 
-Plug 'rudylee/nvim-gist'
+" Plug 'rudylee/nvim-gist'
 
 " Autocomplete
 function! DoRemote(arg)
@@ -159,6 +144,44 @@ noremap <Leader>y "*y
 let g:gist_post_private = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LSP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua << EOF
+require'lspconfig'.solargraph.setup{}
+EOF
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nvim-compe
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua << EOF
+vim.o.completeopt = "menuone,noselect"
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+    ultisnips = true;
+  };
+}
+EOF
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimux
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Run current test file inside tmux pane
@@ -176,27 +199,9 @@ nmap <leader>ne :NERDTree<cr>
 nmap <leader>n :NERDTreeFind<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Coc
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-let g:coc_global_extensions = ['coc-solargraph']
-
-nmap <silent> <leader>dd <Plug>(coc-definition)
-nmap <silent> <leader>dr <Plug>(coc-references)
-nmap <silent> <leader>dj <Plug>(coc-implementation)
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Telescope
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 lua << EOF
 require('telescope').load_extension('fzy_native')
 
@@ -226,6 +231,8 @@ require('telescope').setup{
 EOF
 nnoremap <C-p> :lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>s <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>g <cmd>lua require('telescope.builtin').git_status()<cr>
+nnoremap <leader>f <cmd>lua require('telescope.builtin').treesitter()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ack
