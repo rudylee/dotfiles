@@ -215,6 +215,7 @@ require('telescope').setup{
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<esc>"] = actions.close,
+        ["<c-d>"] = actions.delete_buffer,
      },
       n = {
         ["<esc>"] = actions.close,
