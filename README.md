@@ -8,14 +8,14 @@ Before copying all configs, you need to install `zsh` and `oh-my-zsh`. Check out
 
 ### Install neovim and tmux
 
-```
+```bash
 brew install neovim --HEAD
 brew install tmux
 ```
 
 ### Create symbolic links for all config files
 
-```
+```bash
 mkdir ~/.config
 mkdir ~/.config/nvim
 mkdir ~/.config/alacritty
@@ -36,7 +36,7 @@ ln -sf ~/dotfiles/bashrc ~/.bashrc
 
 In order for Alacritty to work properly with tmux, we need to change the terminfo. Use the snippet below to update the terminfo.
 
-```
+```bash
 # Clone alacritty
 git clone https://github.com/alacritty/alacritty.git
 cd alacritty
