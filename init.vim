@@ -226,7 +226,8 @@ require('telescope').setup{
         override_generic_sorter = false,
         override_file_sorter = true,
       }
-    }
+    },
+    file_ignore_patterns = {"doc/.*", "docs/.*"}
   }
 }
 EOF
@@ -242,7 +243,7 @@ if executable('rg')
   " Use rg over grep
   set grepprg=rg\ --nogroup\ --nocolor
 
-  let g:ackprg = 'rg --vimgrep'
+  let g:ackprg = 'rg --vimgrep -g "!doc/*" -g "!docs/*"'
 endif
 
 " bind K to grep word under cursor

@@ -124,3 +124,5 @@ alias tas='tmux attach-session -t'
 alias tks='tmux kill-session -t'
 
 export PATH=$HOME/google-cloud-sdk/bin:$HOME/go/bin:$PATH
+
+source ~/.bash_profile

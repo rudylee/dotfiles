@@ -47,3 +47,11 @@ sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 # cleanup
 cd .. && rm -rf alacritty
 ```
+
+### Change Mac Key Repeat
+
+```bash
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 10
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+```
