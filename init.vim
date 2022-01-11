@@ -148,6 +148,7 @@ let g:gist_post_private = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 lua << EOF
 require'lspconfig'.solargraph.setup{}
+require'lspconfig'.tsserver.setup{}
 EOF
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -197,6 +198,17 @@ let NERDTreeShowLineNumbers=1
 
 nmap <leader>ne :NERDTree<cr>
 nmap <leader>n :NERDTreeFind<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Treesitter
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  indent = {
+    enable = true
+  }
+}
+EOF
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Telescope
