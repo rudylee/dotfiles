@@ -77,6 +77,7 @@ if (has("termguicolors"))
  set termguicolors
 endif
 syntax enable
+let g:tokyonight_style = "storm"
 colorscheme tokyonight
 highlight Comment cterm=italic gui=italic
 
