@@ -56,6 +56,7 @@ Plug 'othree/html5.vim'
 
 " Colorscheme and UI
 Plug 'morhetz/gruvbox'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Go
 Plug 'fatih/vim-go'
@@ -76,8 +77,7 @@ if (has("termguicolors"))
  set termguicolors
 endif
 syntax enable
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = "medium"
+colorscheme tokyonight
 highlight Comment cterm=italic gui=italic
 
 " Set up leader key to <,>
