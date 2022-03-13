@@ -45,6 +45,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
+Plug 'ojroques/vim-oscyank'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Github tool
@@ -138,8 +139,9 @@ nnoremap <leader>pp :%!python -m json.tool<cr>
 " Enable 256 color support in tmux <http://superuser.com/questions/399296/256-color-support-for-vim-background-in-tmux>
 set t_ut=
 
-" Copy to clipboard
-noremap <Leader>y "*y
+" OSCYank
+noremap <Leader>y :OSCYank<CR>
+let g:oscyank_max_length = 1000000
 
 " Gist
 let g:gist_post_private = 1
