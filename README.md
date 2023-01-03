@@ -32,24 +32,6 @@ ln -sf ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ln -sf ~/dotfiles/bashrc ~/.bashrc
 ```
 
-### Install Alacritty
-
-##### Update terminfo
-
-In order for Alacritty to work properly with tmux, we need to change the terminfo. Use the snippet below to update the terminfo.
-
-```bash
-# Clone alacritty
-git clone https://github.com/alacritty/alacritty.git
-cd alacritty
-
-# setup terminfo
-sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
-
-# cleanup
-cd .. && rm -rf alacritty
-```
-
 ### Change Mac Key Repeat
 
 ```bash
