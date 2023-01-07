@@ -43,8 +43,6 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
 Plug 'ojroques/vim-oscyank'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -56,7 +54,6 @@ Plug 'mattn/gist-vim'
 Plug 'othree/html5.vim'
 
 " Colorscheme and UI
-Plug 'morhetz/gruvbox'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Go
@@ -65,7 +62,24 @@ Plug 'fatih/vim-go'
 " GraphQL
 Plug 'jparise/vim-graphql'
 
-" Plug 'rudylee/nvim-gist'
+" LSP Support
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+
+"  Snippets
+Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
+
+Plug 'VonHeikemen/lsp-zero.nvim'
 
 " Autocomplete
 function! DoRemote(arg)
@@ -75,7 +89,7 @@ endfunction
 call plug#end()
 
 if (has("termguicolors"))
- set termguicolors
+  set termguicolors
 endif
 syntax enable
 let g:tokyonight_style = "storm"
@@ -154,39 +168,13 @@ vnoremap K :m '<-2<CR>gv=gv
 " LSP
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 lua << EOF
-require'lspconfig'.solargraph.setup{}
-require'lspconfig'.tsserver.setup{}
-EOF
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nvim-compe
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-lua << EOF
-vim.o.completeopt = "menuone,noselect"
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
-
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = true;
-    ultisnips = true;
-  };
-}
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+lsp.ensure_installed({
+  'tsserver',
+  'solargraph',
+})
+lsp.setup()
 EOF
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
