@@ -29,7 +29,8 @@ syntax sync minlines=256
 call plug#begin('~/.vim/plugged')
 
 " Tools
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -185,14 +186,34 @@ nnoremap <leader>r :call VimuxRunCommand("bundle exec rspec " . bufname("%"))<CR
 nnoremap <leader>rf :call VimuxRunCommand("bundle exec rspec " . bufname("%") . " --tag focus")<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree
+" NvimTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeDirArrows=0
-let NERDTreeChDirMode=2
-let NERDTreeShowLineNumbers=1
+nmap <leader>n :NvimTreeToggle<cr>
+nmap <leader>nf :NvimTreeFindFile<CR>
 
-nmap <leader>ne :NERDTree<cr>
-nmap <leader>n :NERDTreeFind<CR>
+lua <<EOF
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+EOF
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treesitter

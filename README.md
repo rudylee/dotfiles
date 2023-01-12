@@ -14,6 +14,13 @@ brew install tmux
 brew install ripgrep
 ```
 
+### Download and Install JetBrains Mono Patched Fonts
+
+[JetBrains Mono Bold Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/Bold/complete/JetBrains%20Mono%20Bold%20Nerd%20Font%20Complete.ttf)
+[JetBrains Mono Medium Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/Medium/complete/JetBrains%20Mono%20Medium%20Nerd%20Font%20Complete.ttf)
+[JetBrains Mono Italic Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/Italic/complete/JetBrains%20Mono%20Italic%20Nerd%20Font%20Complete.ttf)
+[JetBrains Mono Bold Italic Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/BoldItalic/complete/JetBrains%20Mono%20Bold%20Italic%20Nerd%20Font%20Complete.ttf)
+
 ### Create symbolic links for all config files
 
 ```bash
