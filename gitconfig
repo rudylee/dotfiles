@@ -21,9 +21,9 @@
     ds = diff --stat=160,120
     fa = fetch --all
     ff = merge --ff-only
-    ffum = merge --ff-only upstream/master
+    ffum = merge --ff-only upstream/main
     noff = merge --no-ff
-    pom = push origin master
+    pom = push origin main
     pof = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\" --force"
     pob = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\""
     pullff = pull --ff-only
@@ -32,8 +32,8 @@
     prs = pr show
     st = status
     sq = rebase -i HEAD~2
-    sc = !git fetch --all && git merge --ff-only upstream/master && git push origin master
-    rem = rebase master
+    sc = !git fetch --all && git merge --ff-only upstream/main && git push origin main
+    rem = rebase main
     rc = rebase --continue
     rs = restore --staged
 
