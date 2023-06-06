@@ -46,7 +46,6 @@ require("lazy").setup({
   'tomtom/tcomment_vim',
   'mileszs/ack.vim',
   'benmills/vimux',
-  'folke/tokyonight.nvim',
   'nvim-lua/popup.nvim',
   'nvim-lua/plenary.nvim',
   'nvim-telescope/telescope.nvim',
@@ -65,14 +64,10 @@ require("lazy").setup({
   'rafamadriz/friendly-snippets',
   'VonHeikemen/lsp-zero.nvim',
   {
-    'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require'nvim-treesitter.configs'.setup {
-        indent = {
-          enable = true
-        }
-      }
-    end,
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
   },
   {
     'folke/which-key.nvim',
@@ -80,6 +75,18 @@ require("lazy").setup({
     init = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
+    end,
+    opts = {
+    }
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        indent = {
+          enable = true
+        }
+      }
     end,
   }
 })
@@ -89,8 +96,7 @@ if vim.fn.has("termguicolors") == 1 then
   vim.o.termguicolors = true
 end
 vim.cmd('syntax enable')
-vim.g.tokyonight_style = "storm"
-vim.cmd('colorscheme tokyonight')
+vim.cmd[[colorscheme tokyonight-moon]]
 vim.cmd('highlight Comment cterm=italic gui=italic')
 
 -- Set up leader key to <,>
