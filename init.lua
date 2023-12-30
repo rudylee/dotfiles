@@ -257,10 +257,10 @@ Telescope
 ]]
 vim.api.nvim_set_keymap('i', '<TAB>', 'pumvisible() ? "<C-n>" : "<TAB>"', { expr = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-p>', ":lua require('telescope.builtin').find_files()<CR>", { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>/', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>s', "<cmd>lua require('telescope.builtin').buffers()<cr>", { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>g', "<cmd>lua require('telescope.builtin').live_grep()<cr>", { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>f', "<cmd>lua require('telescope.builtin').treesitter()<cr>", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>t', "<cmd>lua require('telescope.builtin').treesitter()<cr>", { silent = true })
 
 require('telescope').load_extension('fzy_native')
 
@@ -287,23 +287,5 @@ require('telescope').setup{
       }
     },
     file_ignore_patterns = {"doc/.*", "docs/.*"}
-  }
+  },
 }
-
---[[
-Ack
-]]
-if vim.fn.executable('rg') == 1 then
-  -- Use rg over grep
-  vim.opt.grepprg = 'rg --nogroup --nocolor'
-
-  vim.g.ackprg = 'rg --vimgrep -g "!doc/*" -g "!docs/*"'
-end
-
--- Bind K to grep word under cursor
-vim.api.nvim_set_keymap('n', 'K', ':Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>', { silent = true })
-
--- Bind \ (backward slash) to grep shortcut
-vim.cmd("command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!")
-
-vim.api.nvim_set_keymap('n', '\\', ':Ack<SPACE>', { silent = true })
