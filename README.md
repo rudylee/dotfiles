@@ -38,7 +38,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 ### Install powerlevel10k zsh theme
 
-[powerlevel10k](https://github.com/romkatv/powerlevel10k)
+[How to install powerlevel10k for Oh My Zsh](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#oh-my-zsh)
+
 
 ### Create symbolic links for all config files
 
