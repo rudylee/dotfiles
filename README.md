@@ -2,24 +2,43 @@
 
 My personal neovim, tmux, kitty and zsh config.
 
+### Install Homebrew
+
+[Official Website](https://brew.sh/)
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
 ### Install zsh and oh-my-zsh
 
 Before copying all configs, you need to install `zsh` and `oh-my-zsh`. Check out the official website on how to install them [https://ohmyz.sh/](https://ohmyz.sh/)
 
-### Install neovim, tmux and ripgrep
+### Install neovim, tmux, ripgrep and rbenv
 
 ```bash
 brew install neovim --HEAD
 brew install tmux
 brew install ripgrep
+brew install rbenv
+```
+
+### Install NVM
+
+[NVM](https://github.com/nvm-sh/nvm)
+
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 ```
 
 ### Download and Install JetBrains Mono Patched Fonts
 
-[JetBrains Mono Bold Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/Bold/complete/JetBrains%20Mono%20Bold%20Nerd%20Font%20Complete.ttf)
-[JetBrains Mono Medium Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/Medium/complete/JetBrains%20Mono%20Medium%20Nerd%20Font%20Complete.ttf)
-[JetBrains Mono Italic Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/Italic/complete/JetBrains%20Mono%20Italic%20Nerd%20Font%20Complete.ttf)
-[JetBrains Mono Bold Italic Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/BoldItalic/complete/JetBrains%20Mono%20Bold%20Italic%20Nerd%20Font%20Complete.ttf)
+1. Go to `nerd-fonts` release page https://github.com/ryanoasis/nerd-fonts/releases
+2. Find the the latest release of JetBrainsMono, download and install.
+
+### Install powerlevel10k zsh theme
+
+[powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
 ### Create symbolic links for all config files
 

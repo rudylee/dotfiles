@@ -113,8 +113,7 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-alias g='hub'
-alias k='kubectl'
+alias g='git'
 alias mux='tmuxinator'
 alias rake='noglob rake'
 alias vi='nvim'
@@ -123,7 +122,5 @@ alias t='tmux new -s "${PWD##*/}"'
 alias ts='tmux ls'
 alias tas='tmux attach-session -t'
 alias tks='tmux kill-session -t'
-
-export PATH=$HOME/google-cloud-sdk/bin:$HOME/go/bin:$PATH
 
 source ~/.bash_profile

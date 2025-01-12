@@ -244,13 +244,24 @@ require("nvim-tree").setup({
 --[[
 LSP
 ]]
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
-lsp.ensure_installed({
-  'tsserver',
-  'solargraph',
+local lsp_zero = require('lsp-zero')
+
+lsp_zero.on_attach(function(client, bufnr)
+  -- Default keybindings
+  lsp_zero.default_keymaps({buffer = bufnr})
+end)
+
+-- Setup Mason for managing LSP servers
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'tsserver',
+    'solargraph',
+  },
+  handlers = {
+    lsp_zero.default_setup,
+  },
 })
-lsp.setup()
 
 --[[
 Telescope
