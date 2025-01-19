@@ -58,14 +58,8 @@ plugins=(git vi-mode)
 eval "$(rbenv init -)"
 
 export EDITOR='vim'
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-
-stty ixany
-stty ixoff -ixon
-stty stop undef
-stty start undef
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
