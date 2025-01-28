@@ -1,6 +1,6 @@
 # Dotfiles
 
-My personal neovim, tmux, kitty and zsh config.
+My personal development tools config.
 
 ### Install Homebrew
 
@@ -14,26 +14,27 @@ My personal neovim, tmux, kitty and zsh config.
 
 Before copying all configs, you need to install `zsh` and `oh-my-zsh`. Check out the official website on how to install them [https://ohmyz.sh/](https://ohmyz.sh/)
 
-### Install neovim, tmux, ripgrep and rbenv
+### Install development tools
 
 ```bash
+brew update
 brew install neovim --HEAD
 brew install tmux
 brew install ripgrep
 brew install rbenv
+brew install pyenv
 ```
 
 ### Install NVM
 
-[NVM](https://github.com/nvm-sh/nvm)
+Check [NVM](https://github.com/nvm-sh/nvm) official repository on how to install NVM.
 
-```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-```
+NVM Homebrew is not supported so it is recommended to use the installation script.
+
 
 ### Download and Install JetBrains Mono Patched Fonts
 
-1. Go to `nerd-fonts` release page https://github.com/ryanoasis/nerd-fonts/releases
+1. Go to [nerd-fonts release page](https://github.com/ryanoasis/nerd-fonts/releases)
 2. Find the the latest release of JetBrainsMono, download and install.
 
 ### Install powerlevel10k zsh theme
