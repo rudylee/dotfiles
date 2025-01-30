@@ -88,6 +88,20 @@ require("lazy").setup({
         }
       }
     end,
+  },
+  {
+    "frankroeder/parrot.nvim",
+    dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim" },
+    opts = {},
+    config = function()
+      require("parrot").setup {
+        -- Providers must be explicitly added to make them available.
+        providers = {
+          -- provide an empty list to make provider available (no API key required)
+          ollama = {},
+        },
+      }
+    end,
   }
 })
 
@@ -229,6 +243,10 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
 end
 
+-- Based on https://github.com/MarioCarrion/videos/blob/269956e913b76e6bb4ed790e4b5d25255cb1db4f/2023/01/nvim/lua/plugins/nvim-tree.lua
+local HEIGHT_RATIO = 0.8
+local WIDTH_RATIO = 0.5
+
 require("nvim-tree").setup({
   on_attach = nvim_tree_on_attach,
   sort_by = "case_sensitive",
@@ -237,6 +255,33 @@ require("nvim-tree").setup({
   },
   filters = {
     dotfiles = true,
+  },
+  view = {
+    float = {
+      enable = true,
+      open_win_config = function()
+        local screen_w = vim.opt.columns:get()
+        local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+        local window_w = screen_w * WIDTH_RATIO
+        local window_h = screen_h * HEIGHT_RATIO
+        local window_w_int = math.floor(window_w)
+        local window_h_int = math.floor(window_h)
+        local center_x = (screen_w - window_w) / 2
+        local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
+
+        return {
+          border = "rounded",
+          relative = "editor",
+          row = center_y,
+          col = center_x,
+          width = window_w_int,
+          height = window_h_int,
+        }
+        end,
+    },
+    width = function()
+      return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+    end,
   },
 })
 
