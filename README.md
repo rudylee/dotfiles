@@ -51,7 +51,6 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 mkdir ~/.config
 mkdir ~/.config/nvim
 
-ln -sf ~/dotfiles/zlogin ~/.zlogin
 ln -sf ~/dotfiles/zshrc ~/.zshrc
 ln -sf ~/dotfiles/githelpers ~/.githelpers
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
